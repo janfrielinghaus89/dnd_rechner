@@ -3,21 +3,157 @@ using System.Text.Json;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
+
 namespace DnD_Rechner
 
 {
-
     public partial class Form1 : Form
     {
+        // Initialisiere Inventar
         private Inventory inventory;
+
+        // Umrechnungskurse DnD zu Euro
+        private double platinToEuro = 1000;
+        private double goldToEuro = 100;
+        private double electrumToEuro = 50;
+        private double silverToEuro = 10;
+        private double copperToEuro = 1;
 
         public Form1()
         {
             InitializeComponent();
             inventory = new Inventory();
             inventory.Items = new List<Item>();
+            inventory.Lifestyles = new List<Item>();
+
+            // JSON mit Preisen laden und deserialisieren
+            string jsonFilePath = "prices.json";
+            string priceData = File.ReadAllText(jsonFilePath);
+            var inventoryData = JsonSerializer.Deserialize<Inventory>(priceData);
+            inventory.Items = inventoryData.Items;
+            inventory.Lifestyles = inventoryData.Lifestyles;
+
+            // Fülle das Dropdown-Menü für Items
+            foreach (Item item in inventoryData.Items)
+            {
+                dropdownPriceItem.Items.Add(item.Name);
+            }
+
+            // Fülle das Dropdown-Menü für Lifestyles
+            foreach (Item lifestyle in inventoryData.Lifestyles)
+            {
+                dropdownPriceLifestyle.Items.Add(lifestyle.Name);
+            }
+
+            // Ereignishandler für das Dropdown-Menü dropdownPriceLifestyle hinzufügen
+            dropdownPriceLifestyle.SelectedIndexChanged += priceLifestyle_Selected;
+            dropdownPriceItem.SelectedIndexChanged += priceItems_Selected;
         }
 
+        // Verabeitung der Auswahl im Dropdown Menü für Items
+        private void priceItems_Selected(object sender, EventArgs e)
+        {
+            // Überprüfe, ob ein Item ausgewählt wurde
+            if (dropdownPriceItem.SelectedIndex != -1)
+            {
+                // Rufe den ausgewählten Lifestyle ab
+                string selectedItemName = dropdownPriceItem.SelectedItem.ToString();
+
+                // Suche den ausgewählten Lifestyle in der Liste der Lifestyles
+                Item selectedItem = inventory.Items.Find(l => l.Name == selectedItemName);
+
+                // Überprüfe, ob der ausgewählte Lifestyle gefunden wurde
+                if (selectedItem != null)
+                {
+                    // Berechnung des Europreises
+                    double euroPreis = 0;
+
+                    switch (selectedItem.Currency)
+                    {
+                        case "pp":
+                            euroPreis = selectedItem.Value * platinToEuro;
+                            break;
+                        case "gp":
+                            euroPreis = selectedItem.Value * goldToEuro;
+                            break;
+                        case "ep":
+                            euroPreis = selectedItem.Value * electrumToEuro;
+                            break;
+                        case "sp":
+                            euroPreis = selectedItem.Value * silverToEuro;
+                            break;
+                        case "cp":
+                            euroPreis = selectedItem.Value * copperToEuro;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    // Aktualisiere das Label priceLifestyle mit dem Wert und der Währung des ausgewählten Lifestyles
+                    priceItem.Text = $"{selectedItem.Value} {selectedItem.Currency} = {euroPreis} €";
+                    priceItem.Visible = true;
+                }
+                else
+                {
+                    // Fehlerbehandlung: Lifestyle nicht gefunden
+                    MessageBox.Show("Der ausgewählte Lifestyle wurde nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        // Verabeitung der Auswahl im Dropdown Menü für Lifestyles
+        private void priceLifestyle_Selected(object sender, EventArgs e)
+        {
+            // Überprüfe, ob ein Lifestyle ausgewählt wurde
+            if (dropdownPriceLifestyle.SelectedIndex != -1)
+            {
+                // Rufe den ausgewählten Lifestyle ab
+                string selectedLifestyleName = dropdownPriceLifestyle.SelectedItem.ToString();
+
+                // Suche den ausgewählten Lifestyle in der Liste der Lifestyles
+                Item selectedLifestyle = inventory.Lifestyles.Find(l => l.Name == selectedLifestyleName);
+
+                // Überprüfe, ob der ausgewählte Lifestyle gefunden wurde
+                if (selectedLifestyle != null)
+                {
+                    // Berechnung des Europreises
+                    double euroPreis = 0;
+
+                    switch (selectedLifestyle.Currency)
+                    {
+                        case "pp":
+                            euroPreis = selectedLifestyle.Value * platinToEuro;
+                            break;
+                        case "gp":
+                            euroPreis = selectedLifestyle.Value * goldToEuro;
+                            break;
+                        case "ep":
+                            euroPreis = selectedLifestyle.Value * electrumToEuro;
+                            break;
+                        case "sp":
+                            euroPreis = selectedLifestyle.Value * silverToEuro;
+                            break;
+                        case "cp":
+                            euroPreis = selectedLifestyle.Value * copperToEuro;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    // Aktualisiere das Label priceLifestyle mit dem Wert und der Währung des ausgewählten Lifestyles
+                    priceLifestyle.Text = $"{selectedLifestyle.Value} {selectedLifestyle.Currency} = {euroPreis} € pro Tag";
+                    priceLifestyle.Visible = true;
+                }
+                else
+                {
+                    // Fehlerbehandlung: Lifestyle nicht gefunden
+                    MessageBox.Show("Der ausgewählte Lifestyle wurde nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Prüfen, ob Enter gedrückt wird und berechnet werden kann
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && !string.IsNullOrWhiteSpace(textEuro1.Text))
@@ -48,14 +184,6 @@ namespace DnD_Rechner
 
             return false;
         }
-
-
-        // Umrechnungskurse DnD zu Euro
-        private double platinToEuro = 1000;
-        private double goldToEuro = 100;
-        private double electrumToEuro = 50;
-        private double silverToEuro = 10;
-        private double copperToEuro = 1;
 
         // Umrechungskurs DnD zu Gold
 
@@ -188,6 +316,8 @@ namespace DnD_Rechner
         }
 
     }
+
+    // Vorbereitung für die Dropdown Listen
     public class Item
     {
         public string Name { get; set; }
@@ -198,5 +328,6 @@ namespace DnD_Rechner
     public class Inventory
     {
         public List<Item> Items { get; set; }
+        public List<Item> Lifestyles { get; set; }
     }
 }

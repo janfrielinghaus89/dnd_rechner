@@ -59,11 +59,13 @@
             gold2 = new Label();
             platin2 = new Label();
             boxPricesInDnd = new GroupBox();
+            buttonItemEuro = new Button();
             priceItem = new Label();
             label2 = new Label();
             label1 = new Label();
             dropdownPriceItem = new ComboBox();
             boxPricesLifestyle = new GroupBox();
+            buttonLifestyleEuro = new Button();
             priceLifestyle = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -376,6 +378,7 @@
             // 
             // boxPricesInDnd
             // 
+            boxPricesInDnd.Controls.Add(buttonItemEuro);
             boxPricesInDnd.Controls.Add(priceItem);
             boxPricesInDnd.Controls.Add(label2);
             boxPricesInDnd.Controls.Add(label1);
@@ -383,15 +386,26 @@
             boxPricesInDnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             boxPricesInDnd.Location = new Point(12, 456);
             boxPricesInDnd.Name = "boxPricesInDnd";
-            boxPricesInDnd.Size = new Size(543, 213);
+            boxPricesInDnd.Size = new Size(566, 213);
             boxPricesInDnd.TabIndex = 3;
             boxPricesInDnd.TabStop = false;
             boxPricesInDnd.Text = "Item Preise";
             // 
+            // buttonItemEuro
+            // 
+            buttonItemEuro.BackColor = Color.LightSteelBlue;
+            buttonItemEuro.FlatStyle = FlatStyle.Popup;
+            buttonItemEuro.Location = new Point(223, 164);
+            buttonItemEuro.Name = "buttonItemEuro";
+            buttonItemEuro.Size = new Size(120, 37);
+            buttonItemEuro.TabIndex = 15;
+            buttonItemEuro.Text = "Umrechnen";
+            buttonItemEuro.UseVisualStyleBackColor = false;
+            // 
             // priceItem
             // 
             priceItem.AutoSize = true;
-            priceItem.Location = new Point(165, 129);
+            priceItem.Location = new Point(165, 122);
             priceItem.Name = "priceItem";
             priceItem.Size = new Size(91, 25);
             priceItem.TabIndex = 15;
@@ -401,7 +415,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 129);
+            label2.Location = new Point(6, 122);
             label2.Name = "label2";
             label2.Size = new Size(57, 25);
             label2.TabIndex = 16;
@@ -426,22 +440,34 @@
             // 
             // boxPricesLifestyle
             // 
+            boxPricesLifestyle.Controls.Add(buttonLifestyleEuro);
             boxPricesLifestyle.Controls.Add(priceLifestyle);
             boxPricesLifestyle.Controls.Add(label5);
             boxPricesLifestyle.Controls.Add(label6);
             boxPricesLifestyle.Controls.Add(dropdownPriceLifestyle);
             boxPricesLifestyle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxPricesLifestyle.Location = new Point(576, 456);
+            boxPricesLifestyle.Location = new Point(599, 456);
             boxPricesLifestyle.Name = "boxPricesLifestyle";
-            boxPricesLifestyle.Size = new Size(589, 213);
+            boxPricesLifestyle.Size = new Size(566, 213);
             boxPricesLifestyle.TabIndex = 17;
             boxPricesLifestyle.TabStop = false;
             boxPricesLifestyle.Text = "Lifestyle Preise";
             // 
+            // buttonLifestyleEuro
+            // 
+            buttonLifestyleEuro.BackColor = Color.LightSteelBlue;
+            buttonLifestyleEuro.FlatStyle = FlatStyle.Popup;
+            buttonLifestyleEuro.Location = new Point(223, 164);
+            buttonLifestyleEuro.Name = "buttonLifestyleEuro";
+            buttonLifestyleEuro.Size = new Size(120, 37);
+            buttonLifestyleEuro.TabIndex = 17;
+            buttonLifestyleEuro.Text = "Umrechnen";
+            buttonLifestyleEuro.UseVisualStyleBackColor = false;
+            // 
             // priceLifestyle
             // 
             priceLifestyle.AutoSize = true;
-            priceLifestyle.Location = new Point(165, 129);
+            priceLifestyle.Location = new Point(165, 122);
             priceLifestyle.Name = "priceLifestyle";
             priceLifestyle.Size = new Size(122, 25);
             priceLifestyle.TabIndex = 15;
@@ -451,7 +477,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 129);
+            label5.Location = new Point(6, 122);
             label5.Name = "label5";
             label5.Size = new Size(57, 25);
             label5.TabIndex = 16;
@@ -539,5 +565,7 @@
         private Label label5;
         private Label label6;
         private ComboBox dropdownPriceLifestyle;
+        private Button buttonItemEuro;
+        private Button buttonLifestyleEuro;
     }
 }

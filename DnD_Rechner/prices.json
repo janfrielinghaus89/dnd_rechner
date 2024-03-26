@@ -10,5 +10,17 @@
       "Currency": "cp",
       "Value": 4
     }
+  ],
+  "Lifestyles": [
+    {
+      "Name": "Wretched",
+      "Currency": "cp",
+      "Value": 0
+    },
+    {
+      "Name": "Squalid",
+      "Currency": "sp",
+      "Value": 1
+    }
   ]
 }
