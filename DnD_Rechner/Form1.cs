@@ -1,12 +1,54 @@
+using System.IO;
+using System.Text.Json;
+using System.Windows.Forms;
+using System.Collections.Generic;
+
 namespace DnD_Rechner
 
 {
+
     public partial class Form1 : Form
     {
+        private Inventory inventory;
+
         public Form1()
         {
             InitializeComponent();
+            inventory = new Inventory();
+            inventory.Items = new List<Item>();
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !string.IsNullOrWhiteSpace(textEuro1.Text))
+            {
+                buttonEuroDnd_Click(sender, e);
+                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
+            }
+
+            if (e.KeyCode == Keys.Enter && AtLeastOneFieldFilled())
+            {
+                buttonDndEuro_Click(sender, e);
+                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
+            }
+        }
+
+        // Prüfen, ob mindestens ein Feld auf der rechten Seite gefüllt wurde
+        private bool AtLeastOneFieldFilled()
+        {
+            TextBox[] textFields = { textPlatin1, textGold1, textElectrum1, textSilver1, textCopper1 };
+
+            foreach (TextBox textField in textFields)
+            {
+                if (!string.IsNullOrWhiteSpace(textField.Text))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         // Umrechnungskurse DnD zu Euro
         private double platinToEuro = 1000;
@@ -144,5 +186,17 @@ namespace DnD_Rechner
             resultEuro1.Text = "";
             resultEuro1.Visible = false;
         }
+
+    }
+    public class Item
+    {
+        public string Name { get; set; }
+        public string Currency { get; set; }
+        public int Value { get; set; }
+    }
+
+    public class Inventory
+    {
+        public List<Item> Items { get; set; }
     }
 }

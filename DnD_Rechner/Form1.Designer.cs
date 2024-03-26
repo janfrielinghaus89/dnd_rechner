@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
+            boxEuroInDnd = new GroupBox();
             reset1 = new Button();
             buttonEuroDnd = new Button();
             resultCopper = new Label();
@@ -43,7 +43,7 @@
             electrum1 = new Label();
             platin1 = new Label();
             gold1 = new Label();
-            groupBox2 = new GroupBox();
+            boxDndInEuro = new GroupBox();
             reset2 = new Button();
             buttonDndEuro = new Button();
             resultEuro1 = new Label();
@@ -58,33 +58,45 @@
             electrum2 = new Label();
             gold2 = new Label();
             platin2 = new Label();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            boxPricesInDnd = new GroupBox();
+            priceItem = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            dropdownPriceItem = new ComboBox();
+            boxPricesLifestyle = new GroupBox();
+            priceLifestyle = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            dropdownPriceLifestyle = new ComboBox();
+            boxEuroInDnd.SuspendLayout();
+            boxDndInEuro.SuspendLayout();
+            boxPricesInDnd.SuspendLayout();
+            boxPricesLifestyle.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // boxEuroInDnd
             // 
-            groupBox1.Controls.Add(reset1);
-            groupBox1.Controls.Add(buttonEuroDnd);
-            groupBox1.Controls.Add(resultCopper);
-            groupBox1.Controls.Add(resultSilver);
-            groupBox1.Controls.Add(resultElectrum);
-            groupBox1.Controls.Add(resultGold);
-            groupBox1.Controls.Add(resultPlatinum);
-            groupBox1.Controls.Add(textEuro1);
-            groupBox1.Controls.Add(copper1);
-            groupBox1.Controls.Add(euro1);
-            groupBox1.Controls.Add(silver1);
-            groupBox1.Controls.Add(electrum1);
-            groupBox1.Controls.Add(platin1);
-            groupBox1.Controls.Add(gold1);
-            groupBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(12, 12);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(377, 426);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Euro in DnD";
+            boxEuroInDnd.Controls.Add(reset1);
+            boxEuroInDnd.Controls.Add(buttonEuroDnd);
+            boxEuroInDnd.Controls.Add(resultCopper);
+            boxEuroInDnd.Controls.Add(resultSilver);
+            boxEuroInDnd.Controls.Add(resultElectrum);
+            boxEuroInDnd.Controls.Add(resultGold);
+            boxEuroInDnd.Controls.Add(resultPlatinum);
+            boxEuroInDnd.Controls.Add(textEuro1);
+            boxEuroInDnd.Controls.Add(copper1);
+            boxEuroInDnd.Controls.Add(euro1);
+            boxEuroInDnd.Controls.Add(silver1);
+            boxEuroInDnd.Controls.Add(electrum1);
+            boxEuroInDnd.Controls.Add(platin1);
+            boxEuroInDnd.Controls.Add(gold1);
+            boxEuroInDnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxEuroInDnd.Location = new Point(12, 12);
+            boxEuroInDnd.Name = "boxEuroInDnd";
+            boxEuroInDnd.Size = new Size(377, 426);
+            boxEuroInDnd.TabIndex = 1;
+            boxEuroInDnd.TabStop = false;
+            boxEuroInDnd.Text = "Euro in DnD";
             // 
             // reset1
             // 
@@ -115,9 +127,8 @@
             resultCopper.AutoSize = true;
             resultCopper.Location = new Point(165, 325);
             resultCopper.Name = "resultCopper";
-            resultCopper.Size = new Size(63, 25);
+            resultCopper.Size = new Size(0, 25);
             resultCopper.TabIndex = 12;
-            resultCopper.Text = "label6";
             resultCopper.Visible = false;
             // 
             // resultSilver
@@ -125,9 +136,8 @@
             resultSilver.AutoSize = true;
             resultSilver.Location = new Point(165, 275);
             resultSilver.Name = "resultSilver";
-            resultSilver.Size = new Size(63, 25);
+            resultSilver.Size = new Size(0, 25);
             resultSilver.TabIndex = 11;
-            resultSilver.Text = "label5";
             resultSilver.Visible = false;
             // 
             // resultElectrum
@@ -135,9 +145,8 @@
             resultElectrum.AutoSize = true;
             resultElectrum.Location = new Point(165, 225);
             resultElectrum.Name = "resultElectrum";
-            resultElectrum.Size = new Size(63, 25);
+            resultElectrum.Size = new Size(0, 25);
             resultElectrum.TabIndex = 10;
-            resultElectrum.Text = "label4";
             resultElectrum.Visible = false;
             // 
             // resultGold
@@ -145,9 +154,8 @@
             resultGold.AutoSize = true;
             resultGold.Location = new Point(165, 175);
             resultGold.Name = "resultGold";
-            resultGold.Size = new Size(63, 25);
+            resultGold.Size = new Size(0, 25);
             resultGold.TabIndex = 9;
-            resultGold.Text = "label3";
             resultGold.Visible = false;
             // 
             // resultPlatinum
@@ -155,14 +163,13 @@
             resultPlatinum.AutoSize = true;
             resultPlatinum.Location = new Point(165, 125);
             resultPlatinum.Name = "resultPlatinum";
-            resultPlatinum.Size = new Size(63, 25);
+            resultPlatinum.Size = new Size(0, 25);
             resultPlatinum.TabIndex = 8;
-            resultPlatinum.Text = "label2";
             resultPlatinum.Visible = false;
             // 
             // textEuro1
             // 
-            textEuro1.Location = new Point(165, 50);
+            textEuro1.Location = new Point(165, 47);
             textEuro1.Name = "textEuro1";
             textEuro1.Size = new Size(181, 33);
             textEuro1.TabIndex = 7;
@@ -221,29 +228,29 @@
             gold1.TabIndex = 1;
             gold1.Text = "Gold (gp):";
             // 
-            // groupBox2
+            // boxDndInEuro
             // 
-            groupBox2.Controls.Add(reset2);
-            groupBox2.Controls.Add(buttonDndEuro);
-            groupBox2.Controls.Add(resultEuro1);
-            groupBox2.Controls.Add(textCopper1);
-            groupBox2.Controls.Add(textSilver1);
-            groupBox2.Controls.Add(textElectrum1);
-            groupBox2.Controls.Add(textGold1);
-            groupBox2.Controls.Add(textPlatin1);
-            groupBox2.Controls.Add(euro2);
-            groupBox2.Controls.Add(copper2);
-            groupBox2.Controls.Add(silver2);
-            groupBox2.Controls.Add(electrum2);
-            groupBox2.Controls.Add(gold2);
-            groupBox2.Controls.Add(platin2);
-            groupBox2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(411, 12);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(377, 426);
-            groupBox2.TabIndex = 2;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "DnD in Euro";
+            boxDndInEuro.Controls.Add(reset2);
+            boxDndInEuro.Controls.Add(buttonDndEuro);
+            boxDndInEuro.Controls.Add(resultEuro1);
+            boxDndInEuro.Controls.Add(textCopper1);
+            boxDndInEuro.Controls.Add(textSilver1);
+            boxDndInEuro.Controls.Add(textElectrum1);
+            boxDndInEuro.Controls.Add(textGold1);
+            boxDndInEuro.Controls.Add(textPlatin1);
+            boxDndInEuro.Controls.Add(euro2);
+            boxDndInEuro.Controls.Add(copper2);
+            boxDndInEuro.Controls.Add(silver2);
+            boxDndInEuro.Controls.Add(electrum2);
+            boxDndInEuro.Controls.Add(gold2);
+            boxDndInEuro.Controls.Add(platin2);
+            boxDndInEuro.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxDndInEuro.Location = new Point(411, 12);
+            boxDndInEuro.Name = "boxDndInEuro";
+            boxDndInEuro.Size = new Size(377, 426);
+            boxDndInEuro.TabIndex = 2;
+            boxDndInEuro.TabStop = false;
+            boxDndInEuro.Text = "DnD in Euro";
             // 
             // reset2
             // 
@@ -274,9 +281,8 @@
             resultEuro1.AutoSize = true;
             resultEuro1.Location = new Point(165, 325);
             resultEuro1.Name = "resultEuro1";
-            resultEuro1.Size = new Size(63, 25);
+            resultEuro1.Size = new Size(0, 25);
             resultEuro1.TabIndex = 11;
-            resultEuro1.Text = "label1";
             resultEuro1.Visible = false;
             // 
             // textCopper1
@@ -368,25 +374,133 @@
             platin2.TabIndex = 0;
             platin2.Text = "Platinum (pp):";
             // 
+            // boxPricesInDnd
+            // 
+            boxPricesInDnd.Controls.Add(priceItem);
+            boxPricesInDnd.Controls.Add(label2);
+            boxPricesInDnd.Controls.Add(label1);
+            boxPricesInDnd.Controls.Add(dropdownPriceItem);
+            boxPricesInDnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxPricesInDnd.Location = new Point(12, 456);
+            boxPricesInDnd.Name = "boxPricesInDnd";
+            boxPricesInDnd.Size = new Size(543, 213);
+            boxPricesInDnd.TabIndex = 3;
+            boxPricesInDnd.TabStop = false;
+            boxPricesInDnd.Text = "Item Preise";
+            // 
+            // priceItem
+            // 
+            priceItem.AutoSize = true;
+            priceItem.Location = new Point(165, 129);
+            priceItem.Name = "priceItem";
+            priceItem.Size = new Size(91, 25);
+            priceItem.TabIndex = 15;
+            priceItem.Text = "priceItem";
+            priceItem.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 129);
+            label2.Name = "label2";
+            label2.Size = new Size(57, 25);
+            label2.TabIndex = 16;
+            label2.Text = "Preis:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 69);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 25);
+            label1.TabIndex = 15;
+            label1.Text = "Item:";
+            // 
+            // dropdownPriceItem
+            // 
+            dropdownPriceItem.FormattingEnabled = true;
+            dropdownPriceItem.Location = new Point(165, 66);
+            dropdownPriceItem.Name = "dropdownPriceItem";
+            dropdownPriceItem.Size = new Size(295, 33);
+            dropdownPriceItem.TabIndex = 0;
+            // 
+            // boxPricesLifestyle
+            // 
+            boxPricesLifestyle.Controls.Add(priceLifestyle);
+            boxPricesLifestyle.Controls.Add(label5);
+            boxPricesLifestyle.Controls.Add(label6);
+            boxPricesLifestyle.Controls.Add(dropdownPriceLifestyle);
+            boxPricesLifestyle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxPricesLifestyle.Location = new Point(576, 456);
+            boxPricesLifestyle.Name = "boxPricesLifestyle";
+            boxPricesLifestyle.Size = new Size(589, 213);
+            boxPricesLifestyle.TabIndex = 17;
+            boxPricesLifestyle.TabStop = false;
+            boxPricesLifestyle.Text = "Lifestyle Preise";
+            // 
+            // priceLifestyle
+            // 
+            priceLifestyle.AutoSize = true;
+            priceLifestyle.Location = new Point(165, 129);
+            priceLifestyle.Name = "priceLifestyle";
+            priceLifestyle.Size = new Size(122, 25);
+            priceLifestyle.TabIndex = 15;
+            priceLifestyle.Text = "priceLifestyle";
+            priceLifestyle.Visible = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 129);
+            label5.Name = "label5";
+            label5.Size = new Size(57, 25);
+            label5.TabIndex = 16;
+            label5.Text = "Preis:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 69);
+            label6.Name = "label6";
+            label6.Size = new Size(53, 25);
+            label6.TabIndex = 15;
+            label6.Text = "Item:";
+            // 
+            // dropdownPriceLifestyle
+            // 
+            dropdownPriceLifestyle.FormattingEnabled = true;
+            dropdownPriceLifestyle.Location = new Point(165, 66);
+            dropdownPriceLifestyle.Name = "dropdownPriceLifestyle";
+            dropdownPriceLifestyle.Size = new Size(295, 33);
+            dropdownPriceLifestyle.TabIndex = 0;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            ClientSize = new Size(1177, 681);
+            Controls.Add(boxPricesLifestyle);
+            Controls.Add(boxPricesInDnd);
+            Controls.Add(boxDndInEuro);
+            Controls.Add(boxEuroInDnd);
+            KeyPreview = true;
             Name = "Form1";
             Text = "Form1";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            KeyDown += Form1_KeyDown;
+            boxEuroInDnd.ResumeLayout(false);
+            boxEuroInDnd.PerformLayout();
+            boxDndInEuro.ResumeLayout(false);
+            boxDndInEuro.PerformLayout();
+            boxPricesInDnd.ResumeLayout(false);
+            boxPricesInDnd.PerformLayout();
+            boxPricesLifestyle.ResumeLayout(false);
+            boxPricesLifestyle.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
+        private GroupBox boxEuroInDnd;
+        private GroupBox boxDndInEuro;
         private Label copper1;
         private Label euro1;
         private Label silver1;
@@ -415,5 +529,15 @@
         private Button buttonDndEuro;
         private Button reset1;
         private Button reset2;
+        private GroupBox boxPricesInDnd;
+        private Label label2;
+        private Label label1;
+        private ComboBox dropdownPriceItem;
+        private Label priceItem;
+        private GroupBox boxPricesLifestyle;
+        private Label priceLifestyle;
+        private Label label5;
+        private Label label6;
+        private ComboBox dropdownPriceLifestyle;
     }
 }

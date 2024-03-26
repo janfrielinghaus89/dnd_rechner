@@ -1,0 +1,14 @@
+{
+  "Items": [
+    {
+      "Name": "Ale (Gallon)",
+      "Currency": "sp",
+      "Value": 2
+    },
+    {
+      "Name": "Ale (Mug)",
+      "Currency": "cp",
+      "Value": 4
+    }
+  ]
+}
