@@ -33,21 +33,16 @@ namespace DnD_Rechner
             inventory.Items = inventoryData.Items;
             inventory.Lifestyles = inventoryData.Lifestyles;
 
-            // Fülle das Dropdown-Menü für Items
-            foreach (Item item in inventoryData.Items)
-            {
-                dropdownPriceItem.Items.Add(item.Name);
-            }
+            // Fülle die Dropdown-Menüs für Items und Lifestyles
+            UpdateDropdownLists();
 
-            // Fülle das Dropdown-Menü für Lifestyles
-            foreach (Item lifestyle in inventoryData.Lifestyles)
-            {
-                dropdownPriceLifestyle.Items.Add(lifestyle.Name);
-            }
-
-            // Ereignishandler für das Dropdown-Menü dropdownPriceLifestyle hinzufügen
+            // Ereignishandler hinzufügen
             dropdownPriceLifestyle.SelectedIndexChanged += priceLifestyle_Selected;
             dropdownPriceItem.SelectedIndexChanged += priceItems_Selected;
+            dropdownAddCategory.SelectedIndexChanged += dropdownAddCategory_SelectedIndexChanged;
+            textAddItem.TextChanged += textAddItem_TextChanged;
+            dropdownAddCurrency.SelectedIndexChanged += dropdownAddCurrency_SelectedIndexChanged;
+            textAddPrice.TextChanged += textAddPrice_TextChanged;
         }
 
         // Verabeitung der Auswahl im Dropdown Menü für Items
@@ -315,6 +310,178 @@ namespace DnD_Rechner
             resultEuro1.Visible = false;
         }
 
+        // Funktionen für das Hinzügen von Items oder Lifestyles
+        private void dropdownAddCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob ein Wert ausgewählt wurde
+            if (dropdownAddCategory.SelectedIndex != -1)
+            {
+                // Überprüfe den ausgewählten Wert und aktualisiere das Label
+                if (dropdownAddCategory.SelectedItem.ToString() == "Item")
+                {
+                    labelAddCategoryChosen.Text = "Item";
+                    labelAddCategoryChosen.Visible = true;
+                    textAddItem.Visible = true;
+                }
+                else if (dropdownAddCategory.SelectedItem.ToString() == "Lifestyle")
+                {
+                    labelAddCategoryChosen.Text = "Lifestyle";
+                    labelAddCategoryChosen.Visible = true;
+                    textAddItem.Visible = true;
+                }
+            }
+        }
+
+        private void textAddItem_TextChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob das Feld gefüllt wurde
+            if (!string.IsNullOrWhiteSpace(textAddItem.Text))
+            {
+                labelAddCurrency.Visible = true;
+                dropdownAddCurrency.Visible = true;
+            }
+            else
+            {
+                labelAddCurrency.Visible = false;
+                dropdownAddCurrency.Visible = false;
+            }
+        }
+
+        private void dropdownAddCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob ein Wert ausgewählt wurde
+            if (dropdownAddCurrency.SelectedIndex != -1)
+            {
+                labelAddPrice.Visible = true;
+                textAddPrice.Visible = true;
+            }
+        }
+
+        private void textAddPrice_TextChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob das Feld gefüllt wurde
+            if (!string.IsNullOrWhiteSpace(textAddItem.Text))
+            {
+                buttonAddItem.Visible = true;
+            }
+            else
+            {
+                buttonAddItem.Visible = true;
+            }
+        }
+
+        // Preismanager für das Hinzufügen von neuen Items oder Lifestyle
+        public class PriceManager
+        {
+            private string jsonFilePath = "prices.json";
+
+            public void AddItemToInventory(Item newItem)
+            {
+                try
+                {
+                    // Lese den Inhalt der JSON-Datei
+                    string jsonData = File.ReadAllText(jsonFilePath);
+
+                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
+                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
+
+                    // Füge das neue Item zur Liste hinzu
+                    inventory.Items.Add(newItem);
+
+                    // Serialisiere das aktualisierte Objekt zurück in JSON
+                    string updatedJsonData = JsonSerializer.Serialize(inventory);
+
+                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
+                    File.WriteAllText(jsonFilePath, updatedJsonData);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Fehler beim Schreiben in die Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+
+            public void AddLifestyleToInventory(Item newLifestyle)
+            {
+                try
+                {
+                    // Lese den Inhalt der JSON-Datei
+                    string jsonData = File.ReadAllText(jsonFilePath);
+
+                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
+                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
+
+                    // Füge das neue Lifestyle zur Liste hinzu
+                    inventory.Lifestyles.Add(newLifestyle);
+
+                    // Serialisiere das aktualisierte Objekt zurück in JSON
+                    string updatedJsonData = JsonSerializer.Serialize(inventory);
+
+                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
+                    File.WriteAllText(jsonFilePath, updatedJsonData);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Fehler beim Schreiben in die Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private Item CreateItemOrLifestyle(string name, string currency, int value)
+        {
+            return new Item
+            {
+                Name = name,
+                Currency = currency,
+                Value = value
+            };
+        }
+
+        private void buttonAddItem_Click(object sender, EventArgs e)
+        {
+            string name = textAddItem.Text;
+            string currency = dropdownAddCurrency.Text;
+            int value = Convert.ToInt32(textAddPrice.Text);
+
+            PriceManager priceManager = new PriceManager();
+
+            Item itemToAdd = CreateItemOrLifestyle(name, currency, value);
+
+            if (dropdownAddCategory.Text == "Item")
+            {
+                priceManager.AddItemToInventory(itemToAdd);
+                inventory.Items.Add(itemToAdd); // Hinzufügen zum lokalen Inventory
+            }
+            else if(dropdownAddCategory.Text == "Lifestyle")
+            {
+                priceManager.AddLifestyleToInventory(itemToAdd);
+                inventory.Lifestyles.Add(itemToAdd); // Hinzufügen zum lokalen Inventory
+            }
+
+            UpdateDropdownLists();
+        }
+
+        private void UpdateDropdownLists()
+        {
+            // JSON mit aktualisierten Preisen laden und deserialisieren
+            string jsonFilePath = "prices.json";
+            string priceData = File.ReadAllText(jsonFilePath);
+            var inventoryData = JsonSerializer.Deserialize<Inventory>(priceData);
+
+            // Dropdown-Liste für Items aktualisieren
+            dropdownPriceItem.Items.Clear();
+            foreach (Item item in inventoryData.Items)
+            {
+                dropdownPriceItem.Items.Add(item.Name);
+            }
+
+            // Dropdown-Liste für Lifestyles aktualisieren
+            dropdownPriceLifestyle.Items.Clear();
+            foreach (Item lifestyle in inventoryData.Lifestyles)
+            {
+                dropdownPriceLifestyle.Items.Add(lifestyle.Name);
+            }
+        }
     }
 
     // Vorbereitung für die Dropdown Listen

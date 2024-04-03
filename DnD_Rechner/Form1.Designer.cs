@@ -70,14 +70,26 @@
             label5 = new Label();
             label6 = new Label();
             dropdownPriceLifestyle = new ComboBox();
+            groupBox1 = new GroupBox();
+            dropdownAddCurrency = new ComboBox();
+            textAddPrice = new TextBox();
+            labelAddPrice = new Label();
+            labelAddCurrency = new Label();
+            textAddItem = new TextBox();
+            labelAddCategoryChosen = new Label();
+            buttonAddItem = new Button();
+            labelAddCategory = new Label();
+            dropdownAddCategory = new ComboBox();
             boxEuroInDnd.SuspendLayout();
             boxDndInEuro.SuspendLayout();
             boxPricesInDnd.SuspendLayout();
             boxPricesLifestyle.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // boxEuroInDnd
             // 
+            boxEuroInDnd.BackColor = Color.WhiteSmoke;
             boxEuroInDnd.Controls.Add(reset1);
             boxEuroInDnd.Controls.Add(buttonEuroDnd);
             boxEuroInDnd.Controls.Add(resultCopper);
@@ -93,6 +105,7 @@
             boxEuroInDnd.Controls.Add(platin1);
             boxEuroInDnd.Controls.Add(gold1);
             boxEuroInDnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxEuroInDnd.ForeColor = Color.DarkSlateBlue;
             boxEuroInDnd.Location = new Point(12, 12);
             boxEuroInDnd.Name = "boxEuroInDnd";
             boxEuroInDnd.Size = new Size(377, 426);
@@ -102,8 +115,9 @@
             // 
             // reset1
             // 
-            reset1.BackColor = Color.LightCoral;
+            reset1.BackColor = Color.LightSteelBlue;
             reset1.FlatStyle = FlatStyle.Popup;
+            reset1.ForeColor = Color.Black;
             reset1.Location = new Point(206, 376);
             reset1.Name = "reset1";
             reset1.Size = new Size(120, 37);
@@ -116,6 +130,7 @@
             // 
             buttonEuroDnd.BackColor = Color.LightSteelBlue;
             buttonEuroDnd.FlatStyle = FlatStyle.Popup;
+            buttonEuroDnd.ForeColor = Color.Black;
             buttonEuroDnd.Location = new Point(60, 376);
             buttonEuroDnd.Name = "buttonEuroDnd";
             buttonEuroDnd.Size = new Size(120, 37);
@@ -127,6 +142,7 @@
             // resultCopper
             // 
             resultCopper.AutoSize = true;
+            resultCopper.ForeColor = Color.DarkSlateGray;
             resultCopper.Location = new Point(165, 325);
             resultCopper.Name = "resultCopper";
             resultCopper.Size = new Size(0, 25);
@@ -136,6 +152,7 @@
             // resultSilver
             // 
             resultSilver.AutoSize = true;
+            resultSilver.ForeColor = Color.DarkSlateGray;
             resultSilver.Location = new Point(165, 275);
             resultSilver.Name = "resultSilver";
             resultSilver.Size = new Size(0, 25);
@@ -145,6 +162,7 @@
             // resultElectrum
             // 
             resultElectrum.AutoSize = true;
+            resultElectrum.ForeColor = Color.DarkSlateGray;
             resultElectrum.Location = new Point(165, 225);
             resultElectrum.Name = "resultElectrum";
             resultElectrum.Size = new Size(0, 25);
@@ -154,6 +172,7 @@
             // resultGold
             // 
             resultGold.AutoSize = true;
+            resultGold.ForeColor = Color.DarkSlateGray;
             resultGold.Location = new Point(165, 175);
             resultGold.Name = "resultGold";
             resultGold.Size = new Size(0, 25);
@@ -163,6 +182,7 @@
             // resultPlatinum
             // 
             resultPlatinum.AutoSize = true;
+            resultPlatinum.ForeColor = Color.DarkSlateGray;
             resultPlatinum.Location = new Point(165, 125);
             resultPlatinum.Name = "resultPlatinum";
             resultPlatinum.Size = new Size(0, 25);
@@ -171,6 +191,7 @@
             // 
             // textEuro1
             // 
+            textEuro1.BackColor = Color.White;
             textEuro1.Location = new Point(165, 47);
             textEuro1.Name = "textEuro1";
             textEuro1.Size = new Size(181, 33);
@@ -179,6 +200,7 @@
             // copper1
             // 
             copper1.AutoSize = true;
+            copper1.ForeColor = Color.DarkSlateGray;
             copper1.Location = new Point(6, 325);
             copper1.Name = "copper1";
             copper1.Size = new Size(115, 25);
@@ -188,6 +210,7 @@
             // euro1
             // 
             euro1.AutoSize = true;
+            euro1.ForeColor = Color.DarkSlateGray;
             euro1.Location = new Point(6, 50);
             euro1.Name = "euro1";
             euro1.Size = new Size(55, 25);
@@ -197,6 +220,7 @@
             // silver1
             // 
             silver1.AutoSize = true;
+            silver1.ForeColor = Color.DarkSlateGray;
             silver1.Location = new Point(6, 275);
             silver1.Name = "silver1";
             silver1.Size = new Size(100, 25);
@@ -206,6 +230,7 @@
             // electrum1
             // 
             electrum1.AutoSize = true;
+            electrum1.ForeColor = Color.DarkSlateGray;
             electrum1.Location = new Point(6, 225);
             electrum1.Name = "electrum1";
             electrum1.Size = new Size(128, 25);
@@ -215,6 +240,7 @@
             // platin1
             // 
             platin1.AutoSize = true;
+            platin1.ForeColor = Color.DarkSlateGray;
             platin1.Location = new Point(6, 125);
             platin1.Name = "platin1";
             platin1.Size = new Size(130, 25);
@@ -224,6 +250,7 @@
             // gold1
             // 
             gold1.AutoSize = true;
+            gold1.ForeColor = Color.DarkSlateGray;
             gold1.Location = new Point(6, 175);
             gold1.Name = "gold1";
             gold1.Size = new Size(95, 25);
@@ -232,6 +259,7 @@
             // 
             // boxDndInEuro
             // 
+            boxDndInEuro.BackColor = Color.WhiteSmoke;
             boxDndInEuro.Controls.Add(reset2);
             boxDndInEuro.Controls.Add(buttonDndEuro);
             boxDndInEuro.Controls.Add(resultEuro1);
@@ -247,6 +275,7 @@
             boxDndInEuro.Controls.Add(gold2);
             boxDndInEuro.Controls.Add(platin2);
             boxDndInEuro.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            boxDndInEuro.ForeColor = Color.DarkSlateBlue;
             boxDndInEuro.Location = new Point(411, 12);
             boxDndInEuro.Name = "boxDndInEuro";
             boxDndInEuro.Size = new Size(377, 426);
@@ -256,8 +285,9 @@
             // 
             // reset2
             // 
-            reset2.BackColor = Color.LightCoral;
+            reset2.BackColor = Color.LightSteelBlue;
             reset2.FlatStyle = FlatStyle.Popup;
+            reset2.ForeColor = Color.Black;
             reset2.Location = new Point(206, 376);
             reset2.Name = "reset2";
             reset2.Size = new Size(120, 37);
@@ -270,6 +300,7 @@
             // 
             buttonDndEuro.BackColor = Color.LightSteelBlue;
             buttonDndEuro.FlatStyle = FlatStyle.Popup;
+            buttonDndEuro.ForeColor = Color.Black;
             buttonDndEuro.Location = new Point(60, 376);
             buttonDndEuro.Name = "buttonDndEuro";
             buttonDndEuro.Size = new Size(120, 37);
@@ -281,6 +312,7 @@
             // resultEuro1
             // 
             resultEuro1.AutoSize = true;
+            resultEuro1.ForeColor = Color.DarkSlateGray;
             resultEuro1.Location = new Point(165, 325);
             resultEuro1.Name = "resultEuro1";
             resultEuro1.Size = new Size(0, 25);
@@ -289,6 +321,7 @@
             // 
             // textCopper1
             // 
+            textCopper1.BackColor = Color.White;
             textCopper1.Location = new Point(165, 250);
             textCopper1.Name = "textCopper1";
             textCopper1.Size = new Size(181, 33);
@@ -296,6 +329,7 @@
             // 
             // textSilver1
             // 
+            textSilver1.BackColor = Color.White;
             textSilver1.Location = new Point(165, 200);
             textSilver1.Name = "textSilver1";
             textSilver1.Size = new Size(181, 33);
@@ -303,6 +337,7 @@
             // 
             // textElectrum1
             // 
+            textElectrum1.BackColor = Color.White;
             textElectrum1.Location = new Point(165, 150);
             textElectrum1.Name = "textElectrum1";
             textElectrum1.Size = new Size(181, 33);
@@ -310,6 +345,7 @@
             // 
             // textGold1
             // 
+            textGold1.BackColor = Color.White;
             textGold1.Location = new Point(165, 100);
             textGold1.Name = "textGold1";
             textGold1.Size = new Size(181, 33);
@@ -317,6 +353,7 @@
             // 
             // textPlatin1
             // 
+            textPlatin1.BackColor = Color.White;
             textPlatin1.Location = new Point(165, 50);
             textPlatin1.Name = "textPlatin1";
             textPlatin1.Size = new Size(181, 33);
@@ -325,6 +362,7 @@
             // euro2
             // 
             euro2.AutoSize = true;
+            euro2.ForeColor = Color.DarkSlateGray;
             euro2.Location = new Point(6, 325);
             euro2.Name = "euro2";
             euro2.Size = new Size(55, 25);
@@ -334,6 +372,7 @@
             // copper2
             // 
             copper2.AutoSize = true;
+            copper2.ForeColor = Color.DarkSlateGray;
             copper2.Location = new Point(6, 250);
             copper2.Name = "copper2";
             copper2.Size = new Size(115, 25);
@@ -343,6 +382,7 @@
             // silver2
             // 
             silver2.AutoSize = true;
+            silver2.ForeColor = Color.DarkSlateGray;
             silver2.Location = new Point(6, 200);
             silver2.Name = "silver2";
             silver2.Size = new Size(100, 25);
@@ -352,6 +392,7 @@
             // electrum2
             // 
             electrum2.AutoSize = true;
+            electrum2.ForeColor = Color.DarkSlateGray;
             electrum2.Location = new Point(6, 150);
             electrum2.Name = "electrum2";
             electrum2.Size = new Size(128, 25);
@@ -361,6 +402,7 @@
             // gold2
             // 
             gold2.AutoSize = true;
+            gold2.ForeColor = Color.DarkSlateGray;
             gold2.Location = new Point(6, 100);
             gold2.Name = "gold2";
             gold2.Size = new Size(95, 25);
@@ -370,6 +412,7 @@
             // platin2
             // 
             platin2.AutoSize = true;
+            platin2.ForeColor = Color.DarkSlateGray;
             platin2.Location = new Point(6, 50);
             platin2.Name = "platin2";
             platin2.Size = new Size(130, 25);
@@ -378,13 +421,15 @@
             // 
             // boxPricesInDnd
             // 
+            boxPricesInDnd.BackColor = Color.WhiteSmoke;
             boxPricesInDnd.Controls.Add(buttonItemEuro);
             boxPricesInDnd.Controls.Add(priceItem);
             boxPricesInDnd.Controls.Add(label2);
             boxPricesInDnd.Controls.Add(label1);
             boxPricesInDnd.Controls.Add(dropdownPriceItem);
             boxPricesInDnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxPricesInDnd.Location = new Point(12, 456);
+            boxPricesInDnd.ForeColor = Color.DarkSlateGray;
+            boxPricesInDnd.Location = new Point(12, 449);
             boxPricesInDnd.Name = "boxPricesInDnd";
             boxPricesInDnd.Size = new Size(566, 213);
             boxPricesInDnd.TabIndex = 3;
@@ -395,6 +440,7 @@
             // 
             buttonItemEuro.BackColor = Color.LightSteelBlue;
             buttonItemEuro.FlatStyle = FlatStyle.Popup;
+            buttonItemEuro.ForeColor = Color.Black;
             buttonItemEuro.Location = new Point(223, 164);
             buttonItemEuro.Name = "buttonItemEuro";
             buttonItemEuro.Size = new Size(120, 37);
@@ -405,6 +451,7 @@
             // priceItem
             // 
             priceItem.AutoSize = true;
+            priceItem.ForeColor = Color.DarkSlateGray;
             priceItem.Location = new Point(165, 122);
             priceItem.Name = "priceItem";
             priceItem.Size = new Size(91, 25);
@@ -415,6 +462,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.DarkSlateGray;
             label2.Location = new Point(6, 122);
             label2.Name = "label2";
             label2.Size = new Size(57, 25);
@@ -424,6 +472,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.DarkSlateGray;
             label1.Location = new Point(6, 69);
             label1.Name = "label1";
             label1.Size = new Size(53, 25);
@@ -432,6 +481,7 @@
             // 
             // dropdownPriceItem
             // 
+            dropdownPriceItem.BackColor = Color.White;
             dropdownPriceItem.FormattingEnabled = true;
             dropdownPriceItem.Location = new Point(165, 66);
             dropdownPriceItem.Name = "dropdownPriceItem";
@@ -440,13 +490,15 @@
             // 
             // boxPricesLifestyle
             // 
+            boxPricesLifestyle.BackColor = Color.WhiteSmoke;
             boxPricesLifestyle.Controls.Add(buttonLifestyleEuro);
             boxPricesLifestyle.Controls.Add(priceLifestyle);
             boxPricesLifestyle.Controls.Add(label5);
             boxPricesLifestyle.Controls.Add(label6);
             boxPricesLifestyle.Controls.Add(dropdownPriceLifestyle);
             boxPricesLifestyle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxPricesLifestyle.Location = new Point(599, 456);
+            boxPricesLifestyle.ForeColor = Color.DarkSlateBlue;
+            boxPricesLifestyle.Location = new Point(599, 449);
             boxPricesLifestyle.Name = "boxPricesLifestyle";
             boxPricesLifestyle.Size = new Size(566, 213);
             boxPricesLifestyle.TabIndex = 17;
@@ -457,6 +509,7 @@
             // 
             buttonLifestyleEuro.BackColor = Color.LightSteelBlue;
             buttonLifestyleEuro.FlatStyle = FlatStyle.Popup;
+            buttonLifestyleEuro.ForeColor = Color.Black;
             buttonLifestyleEuro.Location = new Point(223, 164);
             buttonLifestyleEuro.Name = "buttonLifestyleEuro";
             buttonLifestyleEuro.Size = new Size(120, 37);
@@ -467,6 +520,7 @@
             // priceLifestyle
             // 
             priceLifestyle.AutoSize = true;
+            priceLifestyle.ForeColor = Color.DarkSlateGray;
             priceLifestyle.Location = new Point(165, 122);
             priceLifestyle.Name = "priceLifestyle";
             priceLifestyle.Size = new Size(122, 25);
@@ -477,6 +531,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.ForeColor = Color.DarkSlateGray;
             label5.Location = new Point(6, 122);
             label5.Name = "label5";
             label5.Size = new Size(57, 25);
@@ -486,6 +541,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.DarkSlateGray;
             label6.Location = new Point(6, 69);
             label6.Name = "label6";
             label6.Size = new Size(53, 25);
@@ -494,17 +550,137 @@
             // 
             // dropdownPriceLifestyle
             // 
+            dropdownPriceLifestyle.BackColor = Color.White;
             dropdownPriceLifestyle.FormattingEnabled = true;
             dropdownPriceLifestyle.Location = new Point(165, 66);
             dropdownPriceLifestyle.Name = "dropdownPriceLifestyle";
             dropdownPriceLifestyle.Size = new Size(295, 33);
             dropdownPriceLifestyle.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = Color.WhiteSmoke;
+            groupBox1.Controls.Add(dropdownAddCurrency);
+            groupBox1.Controls.Add(textAddPrice);
+            groupBox1.Controls.Add(labelAddPrice);
+            groupBox1.Controls.Add(labelAddCurrency);
+            groupBox1.Controls.Add(textAddItem);
+            groupBox1.Controls.Add(labelAddCategoryChosen);
+            groupBox1.Controls.Add(buttonAddItem);
+            groupBox1.Controls.Add(labelAddCategory);
+            groupBox1.Controls.Add(dropdownAddCategory);
+            groupBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = Color.DarkSlateGray;
+            groupBox1.Location = new Point(10, 673);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(1155, 213);
+            groupBox1.TabIndex = 17;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Item oder Lifestyle hinzufügen";
+            // 
+            // dropdownAddCurrency
+            // 
+            dropdownAddCurrency.BackColor = Color.White;
+            dropdownAddCurrency.FormattingEnabled = true;
+            dropdownAddCurrency.Items.AddRange(new object[] { "cp", "sp", "ep", "gp", "pp" });
+            dropdownAddCurrency.Location = new Point(637, 66);
+            dropdownAddCurrency.Name = "dropdownAddCurrency";
+            dropdownAddCurrency.Size = new Size(295, 33);
+            dropdownAddCurrency.TabIndex = 22;
+            dropdownAddCurrency.Visible = false;
+            // 
+            // textAddPrice
+            // 
+            textAddPrice.BackColor = Color.White;
+            textAddPrice.Location = new Point(637, 137);
+            textAddPrice.Name = "textAddPrice";
+            textAddPrice.Size = new Size(295, 33);
+            textAddPrice.TabIndex = 21;
+            textAddPrice.Visible = false;
+            // 
+            // labelAddPrice
+            // 
+            labelAddPrice.AutoSize = true;
+            labelAddPrice.ForeColor = Color.DarkSlateGray;
+            labelAddPrice.Location = new Point(528, 140);
+            labelAddPrice.Name = "labelAddPrice";
+            labelAddPrice.Size = new Size(57, 25);
+            labelAddPrice.TabIndex = 19;
+            labelAddPrice.Text = "Preis:";
+            labelAddPrice.Visible = false;
+            // 
+            // labelAddCurrency
+            // 
+            labelAddCurrency.AutoSize = true;
+            labelAddCurrency.ForeColor = Color.DarkSlateGray;
+            labelAddCurrency.Location = new Point(528, 69);
+            labelAddCurrency.Name = "labelAddCurrency";
+            labelAddCurrency.Size = new Size(94, 25);
+            labelAddCurrency.TabIndex = 18;
+            labelAddCurrency.Text = "Währung:";
+            labelAddCurrency.Visible = false;
+            // 
+            // textAddItem
+            // 
+            textAddItem.BackColor = Color.White;
+            textAddItem.Location = new Point(165, 137);
+            textAddItem.Name = "textAddItem";
+            textAddItem.Size = new Size(295, 33);
+            textAddItem.TabIndex = 15;
+            textAddItem.Visible = false;
+            // 
+            // labelAddCategoryChosen
+            // 
+            labelAddCategoryChosen.AutoSize = true;
+            labelAddCategoryChosen.ForeColor = Color.DarkSlateGray;
+            labelAddCategoryChosen.Location = new Point(8, 140);
+            labelAddCategoryChosen.Name = "labelAddCategoryChosen";
+            labelAddCategoryChosen.Size = new Size(53, 25);
+            labelAddCategoryChosen.TabIndex = 17;
+            labelAddCategoryChosen.Text = "Item:";
+            labelAddCategoryChosen.Visible = false;
+            // 
+            // buttonAddItem
+            // 
+            buttonAddItem.BackColor = Color.LightSteelBlue;
+            buttonAddItem.FlatStyle = FlatStyle.Popup;
+            buttonAddItem.ForeColor = Color.Black;
+            buttonAddItem.Location = new Point(991, 96);
+            buttonAddItem.Name = "buttonAddItem";
+            buttonAddItem.Size = new Size(120, 37);
+            buttonAddItem.TabIndex = 15;
+            buttonAddItem.Text = "Hinzufügen";
+            buttonAddItem.UseVisualStyleBackColor = false;
+            buttonAddItem.Visible = false;
+            buttonAddItem.Click += buttonAddItem_Click;
+            // 
+            // labelAddCategory
+            // 
+            labelAddCategory.AutoSize = true;
+            labelAddCategory.ForeColor = Color.DarkSlateGray;
+            labelAddCategory.Location = new Point(8, 74);
+            labelAddCategory.Name = "labelAddCategory";
+            labelAddCategory.Size = new Size(97, 25);
+            labelAddCategory.TabIndex = 15;
+            labelAddCategory.Text = "Kategorie:";
+            // 
+            // dropdownAddCategory
+            // 
+            dropdownAddCategory.BackColor = Color.White;
+            dropdownAddCategory.FormattingEnabled = true;
+            dropdownAddCategory.Items.AddRange(new object[] { "Item", "Lifestyle" });
+            dropdownAddCategory.Location = new Point(165, 66);
+            dropdownAddCategory.Name = "dropdownAddCategory";
+            dropdownAddCategory.Size = new Size(295, 33);
+            dropdownAddCategory.TabIndex = 0;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1177, 681);
+            BackColor = Color.Gainsboro;
+            ClientSize = new Size(1177, 895);
+            Controls.Add(groupBox1);
             Controls.Add(boxPricesLifestyle);
             Controls.Add(boxPricesInDnd);
             Controls.Add(boxDndInEuro);
@@ -521,6 +697,8 @@
             boxPricesInDnd.PerformLayout();
             boxPricesLifestyle.ResumeLayout(false);
             boxPricesLifestyle.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -567,5 +745,15 @@
         private ComboBox dropdownPriceLifestyle;
         private Button buttonItemEuro;
         private Button buttonLifestyleEuro;
+        private GroupBox groupBox1;
+        private Button buttonAddItem;
+        private Label labelAddCategory;
+        private ComboBox dropdownAddCategory;
+        private TextBox textAddPrice;
+        private Label labelAddPrice;
+        private Label labelAddCurrency;
+        private TextBox textAddItem;
+        private Label labelAddCategoryChosen;
+        private ComboBox dropdownAddCurrency;
     }
 }
