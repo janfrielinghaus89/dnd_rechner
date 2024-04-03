@@ -108,7 +108,7 @@
             boxEuroInDnd.ForeColor = Color.DarkSlateBlue;
             boxEuroInDnd.Location = new Point(12, 12);
             boxEuroInDnd.Name = "boxEuroInDnd";
-            boxEuroInDnd.Size = new Size(377, 426);
+            boxEuroInDnd.Size = new Size(566, 426);
             boxEuroInDnd.TabIndex = 1;
             boxEuroInDnd.TabStop = false;
             boxEuroInDnd.Text = "Euro in DnD";
@@ -276,9 +276,9 @@
             boxDndInEuro.Controls.Add(platin2);
             boxDndInEuro.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             boxDndInEuro.ForeColor = Color.DarkSlateBlue;
-            boxDndInEuro.Location = new Point(411, 12);
+            boxDndInEuro.Location = new Point(599, 12);
             boxDndInEuro.Name = "boxDndInEuro";
-            boxDndInEuro.Size = new Size(377, 426);
+            boxDndInEuro.Size = new Size(566, 426);
             boxDndInEuro.TabIndex = 2;
             boxDndInEuro.TabStop = false;
             boxDndInEuro.Text = "DnD in Euro";
