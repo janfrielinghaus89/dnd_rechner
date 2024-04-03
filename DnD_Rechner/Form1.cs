@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
+using System.Drawing;
 using System.Collections.Generic;
 
 
@@ -43,6 +44,7 @@ namespace DnD_Rechner
             textAddItem.TextChanged += textAddItem_TextChanged;
             dropdownAddCurrency.SelectedIndexChanged += dropdownAddCurrency_SelectedIndexChanged;
             textAddPrice.TextChanged += textAddPrice_TextChanged;
+
         }
 
         // Verabeitung der Auswahl im Dropdown Menü für Items
@@ -502,6 +504,8 @@ namespace DnD_Rechner
             dropdownAddCurrency.SelectedIndex = -1;
             textAddPrice.Text = "";
         }
+
+        
     }
 
     // Vorbereitung für die Dropdown Listen
