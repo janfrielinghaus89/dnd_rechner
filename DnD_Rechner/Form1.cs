@@ -437,6 +437,7 @@ namespace DnD_Rechner
             };
         }
 
+        // Button für das Hinzufügen von Items oder Lifestyles
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
             string name = textAddItem.Text;
@@ -459,6 +460,7 @@ namespace DnD_Rechner
             }
 
             UpdateDropdownLists();
+            resetStyleAfterAdding();
         }
 
         private void UpdateDropdownLists()
@@ -481,6 +483,24 @@ namespace DnD_Rechner
             {
                 dropdownPriceLifestyle.Items.Add(lifestyle.Name);
             }
+        }
+
+        private void resetStyleAfterAdding()
+        {
+            // Vestecke die Felder nach Hinzufügen wieder
+            labelAddCategoryChosen.Visible = false;
+            textAddItem.Visible = false;
+            labelAddCurrency.Visible = false;
+            dropdownAddCurrency.Visible = false;
+            labelAddPrice.Visible = false;
+            textAddPrice.Visible = false;
+            buttonAddItem.Visible = false;
+
+            // Textfelder nach Hinzufügen resetten
+            dropdownAddCategory.SelectedIndex = -1;
+            textAddItem.Text = "";
+            dropdownAddCurrency.SelectedIndex = -1;
+            textAddPrice.Text = "";
         }
     }
 

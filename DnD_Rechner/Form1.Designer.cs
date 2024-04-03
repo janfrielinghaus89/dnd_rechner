@@ -7,7 +7,7 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> //
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -544,9 +544,9 @@
             label6.ForeColor = Color.DarkSlateGray;
             label6.Location = new Point(6, 69);
             label6.Name = "label6";
-            label6.Size = new Size(53, 25);
+            label6.Size = new Size(84, 25);
             label6.TabIndex = 15;
-            label6.Text = "Item:";
+            label6.Text = "Lifestyle:";
             // 
             // dropdownPriceLifestyle
             // 
