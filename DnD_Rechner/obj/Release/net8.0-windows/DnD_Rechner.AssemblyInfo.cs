@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DnD_Rechner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+389e4fc7c3cf0ff9191c5708988ee1073a2132eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ea70b8454b86d44d2a3344b2fd7ab85b95b66df")]
 [assembly: System.Reflection.AssemblyProductAttribute("DnD_Rechner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DnD_Rechner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

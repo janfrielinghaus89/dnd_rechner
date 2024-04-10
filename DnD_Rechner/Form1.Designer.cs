@@ -731,7 +731,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
+<<<<<<< HEAD
+            BackgroundImage = Properties.Resources.woodenbg;
+=======
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+>>>>>>> eda9708869c9cc121e779db468dc8c6246a49899
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1177, 895);
             Controls.Add(boxAddItemLifestyle);

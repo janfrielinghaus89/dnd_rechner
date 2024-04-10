@@ -1,31 +1,33 @@
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
+<<<<<<< HEAD
+=======
 using System.Drawing;
 using System.Collections.Generic;
 
+>>>>>>> eda9708869c9cc121e779db468dc8c6246a49899
 
 namespace DnD_Rechner
 
 {
     public partial class Form1 : Form
     {
-        // Initialisiere Inventar
+        // Initialisiere das Inventar
         private Inventory inventory;
 
         // Umrechnungskurse DnD zu Euro
-        private double platinToEuro = 1000;
-        private double goldToEuro = 100;
-        private double electrumToEuro = 50;
-        private double silverToEuro = 10;
-        private double copperToEuro = 1;
+        private const double platinToEuro = 1000;
+        private const double goldToEuro = 100;
+        private const double electrumToEuro = 50;
+        private const double silverToEuro = 10;
+        private const double copperToEuro = 1;
 
         public Form1()
         {
             InitializeComponent();
-            inventory = new Inventory();
-            inventory.Items = new List<Item>();
-            inventory.Lifestyles = new List<Item>();
+            InitializeEventHandlers();
+            InitializeInventory();
 
             // JSON mit Preisen laden und deserialisieren
             string jsonFilePath = "prices.json";
@@ -36,18 +38,193 @@ namespace DnD_Rechner
 
             // Fülle die Dropdown-Menüs für Items und Lifestyles
             UpdateDropdownLists();
+        }
 
-            // Ereignishandler hinzufügen
-            dropdownPriceLifestyle.SelectedIndexChanged += priceLifestyle_Selected;
+        // Initialisierung des Inventars
+        private void InitializeInventory()
+        {
+            inventory = new Inventory
+            {
+                Items = new List<Item>(),
+                Lifestyles = new List<Item>()
+            };
+
+            // JSON mit Preisen laden und deserialisieren
+            string jsonFilePath = "prices.json";
+            string priceData = File.ReadAllText(jsonFilePath);
+            inventory = JsonSerializer.Deserialize<Inventory>(priceData);
+
+            // Fülle die Dropdown-Menüs für Items und Lifestyles
+            UpdateDropdownLists();
+        }
+
+        // Initialisierung der Ereignishandler
+        private void InitializeEventHandlers()
+        {
             dropdownPriceItem.SelectedIndexChanged += priceItems_Selected;
+            dropdownPriceLifestyle.SelectedIndexChanged += priceLifestyle_Selected;
+            buttonEuroDnd.Click += buttonEuroDnd_Click;
+            buttonDndEuro.Click += buttonDndEuro_Click;
+            reset1.Click += reset1_Click;
+            reset2.Click += reset2_Click;
             dropdownAddCategory.SelectedIndexChanged += dropdownAddCategory_SelectedIndexChanged;
             textAddItem.TextChanged += textAddItem_TextChanged;
             dropdownAddCurrency.SelectedIndexChanged += dropdownAddCurrency_SelectedIndexChanged;
             textAddPrice.TextChanged += textAddPrice_TextChanged;
+<<<<<<< HEAD
+            buttonAddItem.Click += buttonAddItem_Click;
+            KeyDown += Form1_KeyDown;
+=======
+
+>>>>>>> eda9708869c9cc121e779db468dc8c6246a49899
+        }
+
+        // Prüfen, ob mindestens ein Feld auf der rechten Seite gefüllt wurde
+        private bool AtLeastOneFieldFilled()
+        {
+            TextBox[] textFields = { textPlatin1, textGold1, textElectrum1, textSilver1, textCopper1 };
+
+            foreach (TextBox textField in textFields)
+            {
+                if (!string.IsNullOrWhiteSpace(textField.Text))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // Funktionen für das Hinzügen von Items oder Lifestyles
+        private void dropdownAddCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob ein Wert ausgewählt wurde
+            if (dropdownAddCategory.SelectedIndex != -1)
+            {
+                // Überprüfe den ausgewählten Wert und aktualisiere das Label
+                if (dropdownAddCategory.SelectedItem.ToString() == "Item")
+                {
+                    labelAddCategoryChosen.Text = "Item";
+                    labelAddCategoryChosen.Visible = true;
+                    textAddItem.Visible = true;
+                }
+                else if (dropdownAddCategory.SelectedItem.ToString() == "Lifestyle")
+                {
+                    labelAddCategoryChosen.Text = "Lifestyle";
+                    labelAddCategoryChosen.Visible = true;
+                    textAddItem.Visible = true;
+                }
+            }
+        }
+
+        private void textAddItem_TextChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob das Feld gefüllt wurde
+            if (!string.IsNullOrWhiteSpace(textAddItem.Text))
+            {
+                labelAddCurrency.Visible = true;
+                dropdownAddCurrency.Visible = true;
+            }
+            else
+            {
+                labelAddCurrency.Visible = false;
+                dropdownAddCurrency.Visible = false;
+            }
+        }
+
+        private void dropdownAddCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob ein Wert ausgewählt wurde
+            if (dropdownAddCurrency.SelectedIndex != -1)
+            {
+                labelAddPrice.Visible = true;
+                textAddPrice.Visible = true;
+            }
+        }
+
+        private void textAddPrice_TextChanged(object sender, EventArgs e)
+        {
+            // Überprüfen, ob das Feld gefüllt wurde
+            if (!string.IsNullOrWhiteSpace(textAddPrice.Text))
+            {
+                buttonAddItem.Visible = true;
+            }
+            else
+            {
+                buttonAddItem.Visible = true;
+            }
+        }
+
+        // Preismanager für das Hinzufügen von neuen Items oder Lifestyle
+        public class PriceManager
+        {
+            private string jsonFilePath = "prices.json";
+
+            public void AddItemToInventory(Item newItem)
+            {
+                try
+                {
+                    // Lese den Inhalt der JSON-Datei
+                    string jsonData = File.ReadAllText(jsonFilePath);
+
+                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
+                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
+
+                    // Füge das neue Item zur Liste hinzu
+                    inventory.Items.Add(newItem);
+
+                    // Serialisiere das aktualisierte Objekt zurück in JSON
+                    string updatedJsonData = JsonSerializer.Serialize(inventory);
+
+                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
+                    File.WriteAllText(jsonFilePath, updatedJsonData);
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("Die Preise-Datei wurde nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (JsonException)
+                {
+                    MessageBox.Show("Fehler beim Lesen oder Schreiben der Preise-Datei.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            public void AddLifestyleToInventory(Item newLifestyle)
+            {
+                try
+                {
+                    // Lese den Inhalt der JSON-Datei
+                    string jsonData = File.ReadAllText(jsonFilePath);
+
+                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
+                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
+
+                    // Füge das neue Lifestyle zur Liste hinzu
+                    inventory.Lifestyles.Add(newLifestyle);
+
+                    // Serialisiere das aktualisierte Objekt zurück in JSON
+                    string updatedJsonData = JsonSerializer.Serialize(inventory);
+
+                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
+                    File.WriteAllText(jsonFilePath, updatedJsonData);
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("Die Preise-Datei wurde nicht gefunden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (JsonException)
+                {
+                    MessageBox.Show("Fehler beim Lesen oder Schreiben der Preise-Datei.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Fehler beim Schreiben in die Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
 
-        // Verabeitung der Auswahl im Dropdown Menü für Items
+        // Verarbeitung der Auswahl im Dropdown-Menü für Items
         private void priceItems_Selected(object sender, EventArgs e)
         {
             // Überprüfe, ob ein Item ausgewählt wurde
@@ -98,8 +275,7 @@ namespace DnD_Rechner
             }
         }
 
-
-        // Verabeitung der Auswahl im Dropdown Menü für Lifestyles
+        // Verarbeitung der Auswahl im Dropdown-Menü für Lifestyles
         private void priceLifestyle_Selected(object sender, EventArgs e)
         {
             // Überprüfe, ob ein Lifestyle ausgewählt wurde
@@ -150,40 +326,7 @@ namespace DnD_Rechner
             }
         }
 
-        // Prüfen, ob Enter gedrückt wird und berechnet werden kann
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && !string.IsNullOrWhiteSpace(textEuro1.Text))
-            {
-                buttonEuroDnd_Click(sender, e);
-                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
-            }
-
-            if (e.KeyCode == Keys.Enter && AtLeastOneFieldFilled())
-            {
-                buttonDndEuro_Click(sender, e);
-                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
-            }
-        }
-
-        // Prüfen, ob mindestens ein Feld auf der rechten Seite gefüllt wurde
-        private bool AtLeastOneFieldFilled()
-        {
-            TextBox[] textFields = { textPlatin1, textGold1, textElectrum1, textSilver1, textCopper1 };
-
-            foreach (TextBox textField in textFields)
-            {
-                if (!string.IsNullOrWhiteSpace(textField.Text))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        // Umrechungskurs DnD zu Gold
-
+        // Verarbeitung der Umrechnung von Euro zu DnD-Währungen
         private void buttonEuroDnd_Click(object sender, EventArgs e)
         {
             if (double.TryParse(textEuro1.Text, out double euroAmount))
@@ -215,6 +358,7 @@ namespace DnD_Rechner
             }
         }
 
+        // Verarbeitung der Umrechnung von DnD-Währungen zu Euro
         private void buttonDndEuro_Click(object sender, EventArgs e)
         {
             // Zu füllende Werte der einzelnen Währungen
@@ -274,10 +418,11 @@ namespace DnD_Rechner
             }
             else
             {
-                MessageBox.Show("Bitte füllen sie mindestens eines der Felder mit einer gültigen Zahl aus.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bitte geben Sie gültige Zahlen für mindestens eines der Felder ein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Zurücksetzen der Felder für Euro zu DnD-Währungen
         private void reset1_Click(object sender, EventArgs e)
         {
             // Leeren der Textbox
@@ -298,6 +443,7 @@ namespace DnD_Rechner
             resultCopper.Visible = false;
         }
 
+        // Zurücksetzen der Felder für DnD-Währungen zu Euro
         private void reset2_Click(object sender, EventArgs e)
         {
             // Leeren der Textboxen
@@ -312,134 +458,23 @@ namespace DnD_Rechner
             resultEuro1.Visible = false;
         }
 
-        // Funktionen für das Hinzügen von Items oder Lifestyles
-        private void dropdownAddCategory_SelectedIndexChanged(object sender, EventArgs e)
+        // Prüfen, ob Enter gedrückt wird und berechnet werden kann
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Überprüfen, ob ein Wert ausgewählt wurde
-            if (dropdownAddCategory.SelectedIndex != -1)
+            if (e.KeyCode == Keys.Enter && !string.IsNullOrWhiteSpace(textEuro1.Text))
             {
-                // Überprüfe den ausgewählten Wert und aktualisiere das Label
-                if (dropdownAddCategory.SelectedItem.ToString() == "Item")
-                {
-                    labelAddCategoryChosen.Text = "Item";
-                    labelAddCategoryChosen.Visible = true;
-                    textAddItem.Visible = true;
-                }
-                else if (dropdownAddCategory.SelectedItem.ToString() == "Lifestyle")
-                {
-                    labelAddCategoryChosen.Text = "Lifestyle";
-                    labelAddCategoryChosen.Visible = true;
-                    textAddItem.Visible = true;
-                }
+                buttonEuroDnd_Click(sender, e);
+                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
+            }
+
+            if (e.KeyCode == Keys.Enter && AtLeastOneFieldFilled())
+            {
+                buttonDndEuro_Click(sender, e);
+                e.Handled = true; // Verhindert weiteres Behandeln des Tastendrucks
             }
         }
 
-        private void textAddItem_TextChanged(object sender, EventArgs e)
-        {
-            // Überprüfen, ob das Feld gefüllt wurde
-            if (!string.IsNullOrWhiteSpace(textAddItem.Text))
-            {
-                labelAddCurrency.Visible = true;
-                dropdownAddCurrency.Visible = true;
-            }
-            else
-            {
-                labelAddCurrency.Visible = false;
-                dropdownAddCurrency.Visible = false;
-            }
-        }
-
-        private void dropdownAddCurrency_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Überprüfen, ob ein Wert ausgewählt wurde
-            if (dropdownAddCurrency.SelectedIndex != -1)
-            {
-                labelAddPrice.Visible = true;
-                textAddPrice.Visible = true;
-            }
-        }
-
-        private void textAddPrice_TextChanged(object sender, EventArgs e)
-        {
-            // Überprüfen, ob das Feld gefüllt wurde
-            if (!string.IsNullOrWhiteSpace(textAddItem.Text))
-            {
-                buttonAddItem.Visible = true;
-            }
-            else
-            {
-                buttonAddItem.Visible = true;
-            }
-        }
-
-        // Preismanager für das Hinzufügen von neuen Items oder Lifestyle
-        public class PriceManager
-        {
-            private string jsonFilePath = "prices.json";
-
-            public void AddItemToInventory(Item newItem)
-            {
-                try
-                {
-                    // Lese den Inhalt der JSON-Datei
-                    string jsonData = File.ReadAllText(jsonFilePath);
-
-                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
-                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
-
-                    // Füge das neue Item zur Liste hinzu
-                    inventory.Items.Add(newItem);
-
-                    // Serialisiere das aktualisierte Objekt zurück in JSON
-                    string updatedJsonData = JsonSerializer.Serialize(inventory);
-
-                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
-                    File.WriteAllText(jsonFilePath, updatedJsonData);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Fehler beim Schreiben in die Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
-            }
-
-            public void AddLifestyleToInventory(Item newLifestyle)
-            {
-                try
-                {
-                    // Lese den Inhalt der JSON-Datei
-                    string jsonData = File.ReadAllText(jsonFilePath);
-
-                    // Deserialisiere den Inhalt in ein Objekt vom Typ Inventory
-                    Inventory inventory = JsonSerializer.Deserialize<Inventory>(jsonData);
-
-                    // Füge das neue Lifestyle zur Liste hinzu
-                    inventory.Lifestyles.Add(newLifestyle);
-
-                    // Serialisiere das aktualisierte Objekt zurück in JSON
-                    string updatedJsonData = JsonSerializer.Serialize(inventory);
-
-                    // Schreibe den neuen JSON-Inhalt zurück in die JSON-Datei
-                    File.WriteAllText(jsonFilePath, updatedJsonData);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Fehler beim Schreiben in die Datei: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private Item CreateItemOrLifestyle(string name, string currency, int value)
-        {
-            return new Item
-            {
-                Name = name,
-                Currency = currency,
-                Value = value
-            };
-        }
-
-        // Button für das Hinzufügen von Items oder Lifestyles
+        // Verarbeitung des Hinzufügens von Items oder Lifestyles
         private void buttonAddItem_Click(object sender, EventArgs e)
         {
             string name = textAddItem.Text;
@@ -455,7 +490,7 @@ namespace DnD_Rechner
                 priceManager.AddItemToInventory(itemToAdd);
                 inventory.Items.Add(itemToAdd); // Hinzufügen zum lokalen Inventory
             }
-            else if(dropdownAddCategory.Text == "Lifestyle")
+            else if (dropdownAddCategory.Text == "Lifestyle")
             {
                 priceManager.AddLifestyleToInventory(itemToAdd);
                 inventory.Lifestyles.Add(itemToAdd); // Hinzufügen zum lokalen Inventory
@@ -465,6 +500,7 @@ namespace DnD_Rechner
             resetStyleAfterAdding();
         }
 
+        // Funktion zur Aktualisierung der Dropdown-Listen für Items und Lifestyles
         private void UpdateDropdownLists()
         {
             // JSON mit aktualisierten Preisen laden und deserialisieren
@@ -487,6 +523,7 @@ namespace DnD_Rechner
             }
         }
 
+        // Zurücksetzen der Oberfläche nach dem Hinzufügen von Items oder Lifestyles
         private void resetStyleAfterAdding()
         {
             // Vestecke die Felder nach Hinzufügen wieder
@@ -505,10 +542,25 @@ namespace DnD_Rechner
             textAddPrice.Text = "";
         }
 
+<<<<<<< HEAD
+        // Funktion zur Erstellung von Items oder Lifestyles
+        private Item CreateItemOrLifestyle(string name, string currency, int value)
+        {
+            return new Item
+            {
+                Name = name,
+                Currency = currency,
+                Value = value
+            };
+        }
+
+
+=======
         
+>>>>>>> eda9708869c9cc121e779db468dc8c6246a49899
     }
 
-    // Vorbereitung für die Dropdown Listen
+    // Klasse für Items
     public class Item
     {
         public string Name { get; set; }
@@ -516,6 +568,7 @@ namespace DnD_Rechner
         public int Value { get; set; }
     }
 
+    // Klasse für das Inventar
     public class Inventory
     {
         public List<Item> Items { get; set; }
